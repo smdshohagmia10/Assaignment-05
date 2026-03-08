@@ -31,79 +31,91 @@
         </div>
     </header>
 
-    <section>
-        <h2 id="issue-count">0 Issues</h2>
-        <p>Track and manage your project issues</p>
-    </section>
-
-    <section class="w-8/10 mx-auto">
-            <div class="flex gap-1 mt-6">
-
-            <!-- <button onclick="loadIssue()" class="btn btn-outline btn-primary">All</button>
-
-            <button onclick="filterIssue('open')" class="btn btn-outline btn-primary">Open</button>
-
-            <button onclick="filterIssue('closed')" class="btn btn-outline btn-primary">Closed</button> -->
-            <!-- <button onclick="showAll()" class="btn btn-outline btn-primary">All</button>
-
-            <button onclick="showOpen()" class="btn btn-outline btn-primary"">Open</button>
-
-            <button onclick="showClosed()" class="btn btn-outline btn-primary">Closed</button> -->
-
-            <button onclick="filterIssues('all')" class="btn btn-outline btn-primary">All</button>
-
-<button onclick="filterIssues('open')" class="btn btn-outline btn-primary">Open</button>
-
-<button onclick="filterIssues('closed')" class="btn btn-outline btn-primary">Closed</button>
+    <main  class="w-10/12 mx-auto mt-11">
+     <!-- button section  -->
+      <section class="shadow-sm rounded-sm px-4 py-2 mb-5">
+        <button onclick="filterCards(this,'all')" class="filter-btn btn-primary btn  ">All</button>
+        <button onclick="filterCards(this,'open')" class="filter-btn btn-primary btn btn-outline">Open</button>
+        <button onclick="filterCards(this,'closed')" class="filter-btn btn-primary btn btn-outline">Closed</button>
+      </section>
+      <!-- issue section  -->
+       <section  class="flex justify-between items-center shadow-sm rounded-sm px-4 py-2">
+        <div class="flex gap-2 items-center">
+          <div class="bg-indigo-100 p-2 rounded-full">
+            <img class=" w-8" src="image/Aperture.png " alt="">
+          </div>
+          <div>
+            <h2 class="text-lg font-bold"> <span id="card-count">0</span> Issues</h2>
+            <p class="text-gray-500 ">Track and manage your project issues</p>
+          </div>
         </div>
-    </section>
+        <!-- right side -->
+         <div class="flex gap-3">
+          <p class="flex items-center gap-1 font-semibold"><span  aria-label="status" class="status status-success"></span>Open</p>
+          <p class="flex items-center gap-1 font-semibold"><span aria-label="error" class="status status-error"></span>Closed</p>
+         </div>
 
-    <div id="issue-container" class="w-8/10 mx-auto grid grid-cols-4 gap-5 mt-5 items-stretch"></div>
+       </section>
+         <div id="loding" class="flex h-[50vh] justify-center items-center col-span-full hidden">
+             <span class="loading loading-spinner loading-xl"></span>
+         </div>
 
-    </div>
+       <section id="card-containar" class="grid md:grid-cols-4 gap-3 p-4 shadow-sm">      
 
-    <div id="issue-container" class="grid grid-cols-3 gap-6"></div>
-
-    <!-- <section class="w-8/10 mx-auto justify-start grid grid-cols-4 mt-5">
-        <div class="p-4 bg-white rounded-lg space-y-3">
-    
-            <div class="flex justify-between">
-                <img class="h-[30px] w-[30px]" src="./assets/Open-Status.png" alt="">
-                <p class="bg-[#FEECEC] rounded-full px-8 py-2 text-[#EF4444] font-bold text-[12px]">HIGH</p>
+        <div class="shadow-sm border-t-3 border-green-700 rounded-md ">
+            <div class="flex justify-between p-3">
+              <!-- left side -->
+              <div id="open-closed" class="flex">
+                <img class="hidden w-full" src="image/Closed- Status .png" alt="">
+                <img class=" w-full" src="image/Open-Status.png" alt="">
+              </div>
+              <div id="h-m-d">
+                <h3 class="badge badge-error badge-soft rounded-full font-semibold">HIGH</h3>
+                <h3 class="hidden badge badge-warning badge-soft rounded-full font-semibold">MEDIUM</h3>
+                <h3 class="hidden badge badge-neutral badge-soft rounded-full font-semibold text-gray-500">LOW</h3>
+              </div>
             </div>
+        </div>
+       </section>
+ </main>
 
+<dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
+  <div class="modal-box">
+    <div id="modal-body">
+     <div class="space-y-2">
+            <h2 class="text-2xl font-semibold">Fix broken image uploads</h2>  
+            <div class="flex gap-2">
+              <p class="rounded-full bg-success text-white w-fit px-2 font-semibold">Opened </p>
+              <p class="hidden rounded-full bg-error text-white w-fit px-2 font-semibold">Closed </p>
+              <p class="text-gray-500"> <span class="status status-neutral mb-1"></span> Opened by Fahim Ahmed</p>
+              <p class="text-gray-500"> <span class="status status-neutral mb-1"></span> 22/02/2026</p>             
+            </div>
+        </div>
+        <div>
+            <!-- bugs and others --> 
+        </div>
+        <div>
+            <p class="text-gray-500">The navigation menu doesn't collapse properly on mobile devices. Need to fix the responsive behavior.</p>
+        </div>
+        <div class="bg-slate-100 flex justify-between p-3 rounded-lg">
             <div>
-                <h2 class="font-semibold text-[#000000] text-[20px]">Fix navigation menu on mobile devices</h2>
-                <p class="text-[#64748B]">The navigation menu doesn't collapse properly on mobile devices...</p>
+                <p class="text-gray-600">Assignee:</p>
+                <p class="text-xl font-semibold">Fahim Ahmed</p>
             </div>
-
-            <div class="flex gap-4">
-                <div class="flex items-center gap-1 bg-[#FEECEC] rounded-full px-4 py-2">
-                    <img src="./assets/Vector (3).png" alt="">
-                    <p class="text-[12px] font-bold text-[#EF4444]">BUG</p>
-                </div>
-                <div class="flex items-center bg-[#FFF8DB] gap-1 rounded-full px-4 py-2">
-                    <img src="./assets/vector(4).png" alt="">
-                    <p class="text-[12px] font-bold text-[#D97706]">help wanted</p>
-                </div>
+            <div>
+                <p class="text-gray-600">Priority:</p>
+                <!-- <div>haljkhhajfh</div> -->
             </div>
-
-            <hr>
-
-            <div class="">
-                <p class="text-[12px] text-[#64748B]">#1 by john_doe</p>
-                <p class="text-[12px] text-[#64748B]">1/15/2024</p>
-            </div>
-
         </div>
-    </section> -->
-
-
-    <!-- modal -->
-
-    <!-- Open the modal using ID.showModal() method -->
-
-    
+    </div>
+    <div class="modal-action">
+      <form method="dialog">
+        <!-- if there is a button in form, it will close the modal -->
+        <button class="btn btn-primary">Close</button>
+      </form>
+    </div>
+  </div>
+</dialog>
     <script src="./script.js"></script>
 </body>
 </html>
