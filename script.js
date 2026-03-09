@@ -18,12 +18,12 @@ const showIssueDeteils=(id)=>{
    .then(res =>res.json())
    .then((data)=>modalinfoDisplay(data.data))
 }
-//deteils display
+//details display
 const modalinfoDisplay=(details)=>{
   console.log(details)
-  const deteilsContainar=document.getElementById("modal-body");
-  deteilsContainar.classList.add('space-y-3')
-  deteilsContainar.innerHTML=`
+  const detailsContainar=document.getElementById("modal-body");
+  detailsContainar.classList.add('space-y-3')
+  detailsContainar.innerHTML=`
    <div class="space-y-2">
             <h2 class="text-2xl font-semibold">Fix broken image uploads</h2>  
             <div class="flex gap-2">
@@ -94,19 +94,19 @@ const allCardDisplay =(cards)=>{
         `;
         parentDiv.appendChild(childDiv);
       });
-      // cardcount 
-      const cardcount=document.getElementById("card-count");
+      // cardCount 
+      const cardCount=document.getElementById("card-count");
       const cardLength=parentDiv.children.length;
-      cardcount.innerText=cardLength;
+      cardCount.innerText=cardLength;
 }
 
-//loding korar function
-const loding=document.getElementById("loding");
+//loading korar function
+const loading=document.getElementById("loding");
     const startLoding =()=>{
-        loding.classList.remove('hidden');
+        loading.classList.remove('hidden');
     }
     const endLoding =()=>{
-        loding.classList.add('hidden');
+        loading.classList.add('hidden');
     }
 
 //function for status icon
@@ -154,7 +154,7 @@ const colorOfBorder=(priority)=>{
     return "border-green-700";
   }
   else{
-    return "border-primary";
+    return "border-purple-700";
   }
 }
 
@@ -209,8 +209,8 @@ const filterCards=(everyBtn,catagoryId)=>{
     endLoding();
   }
   else{
-    const filtredCard=allIssues.filter(card => card.status === catagoryId);
-    allCardDisplay(filtredCard);
+    const filterCard=allIssues.filter(card => card.status === catagoryId);
+    allCardDisplay(filterCard);
     endLoding();
   }
 
@@ -219,18 +219,22 @@ const filterCards=(everyBtn,catagoryId)=>{
 allCardFetch()
 
 
-//search button activetion
-document.getElementById("search-btn").addEventListener('click',()=>{
-  const inputValue =document.getElementById("search-input").value.trim().toLowerCase() ;
-  console.log(inputValue);
+//search button activation
+document.getElementById("search-btn").addEventListener("click", () => {
+
+  const inputValue = document.getElementById("search-input").value.trim().toLowerCase();
 
   startLoding();
+
   fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${inputValue}`)
-  .then(res => res.json())
-  .then((data)=>{
-    console.log(data.data)
-    const filterSurch=data.data;
-    allCardDisplay(filterSurch);
-    endLoding();
-  })
-})
+    .then(res => res.json())
+    .then((data) => {
+
+      const filterSearch = data.data;
+
+      allCardDisplay(filterSearch);
+
+      endLoding();
+    });
+
+});
